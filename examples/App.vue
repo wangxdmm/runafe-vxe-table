@@ -3,10 +3,10 @@
     <header class="page-header">
       <div class="left">
         <a href="/vxe-table/">
-          <img src="/vxe-table/logo.png" width="18">
+          <!-- <img src="/vxe-table/logo.png" width="18"> -->
           <span class="title">vxe-table</span>
         </a>
-        <a href='https://gitee.com/xuliangzhan_admin/vxe-table/stargazers'>
+        <!-- <a href='https://gitee.com/xuliangzhan_admin/vxe-table/stargazers'>
           <img src='https://gitee.com/xuliangzhan_admin/vxe-table/badge/star.svg?theme=gvp' alt='star'>
         </a>
         <a href="https://github.com/x-extends/vxe-table/stargazers">
@@ -14,36 +14,35 @@
         </a>
         <a href="http://npm-stat.com/charts.html?package=vxe-table">
           <img src="https://img.shields.io/npm/dm/vxe-table.svg">
-        </a>
+        </a> -->
       </div>
       <div class="right">
         <div class="content">
-          <span v-if="usedJSHeapSize && usedJSHeapSize !== '0'" class="performance">Memory used: {{ usedJSHeapSize }} MB.</span>
-          <span>{{ $t('app.body.label.translations') }}:</span>
+          <!-- <span v-if="usedJSHeapSize && usedJSHeapSize !== '0'" class="performance">Memory used: {{ usedJSHeapSize }} MB.</span>
+          <span>{{ $t('app.body.label.translations') }}:</span> -->
           <vxe-select class="locale-switch" size="mini" v-model="$i18n.locale">
             <vxe-option value="zh_CN" label="中文"></vxe-option>
-            <vxe-option value="zh_TC" label="繁體中文"></vxe-option>
-            <vxe-option value="en_US" label="English"></vxe-option>
+            <!-- <vxe-option value="zh_TC" label="繁體中文"></vxe-option>
+            <vxe-option value="en_US" label="English"></vxe-option> -->
             <!-- <vxe-option value="ja_JP" label="ジャパン"></vxe-option> -->
           </vxe-select>
           <span>{{ $t('app.body.label.version') }}: </span>
           <vxe-select class="version-switch" size="mini" v-model="version" @change="vChangeEvent">
             <!-- <vxe-option value="4.5" :label="$t('app.body.other.v4d5')" disabled></vxe-option> -->
-            <vxe-option value="4" :label="$t('app.body.other.v4')"></vxe-option>
+            <!-- <vxe-option value="4" :label="$t('app.body.other.v4')"></vxe-option> -->
             <!-- <vxe-option value="3.5" :label="$t('app.body.other.v3d5')" disabled></vxe-option> -->
             <vxe-option value="3" :label="$t('app.body.other.v3')"></vxe-option>
-            <vxe-option value="2" :label="$t('app.body.other.v2')" class-name="due-to-stop"></vxe-option>
-            <vxe-option value="1" :label="$t('app.body.other.v1')" class-name="end-of-life"></vxe-option>
+            <!-- <vxe-option value="2" :label="$t('app.body.other.v2')" class-name="due-to-stop"></vxe-option> -->
+            <!-- <vxe-option value="1" :label="$t('app.body.other.v1')" class-name="end-of-life"></vxe-option> -->
           </vxe-select>
-          <router-link class="link donation" :title="$t('app.footer.donationDesc')" :to="{name: 'Donation'}">{{ $t('app.header.label.donation') }}</router-link>
-          <a v-if="showPlugin" class="link support" href="/vxe-table/plugins" target="_blank">💡插件</a>
-          <!-- <a title="维护中" class="link support" style="cursor: no-drop;color: #BFBFBF;background-color:#fff;" @click="$XModal.alert('维护中...', '维护中')">插件</a> -->
+          <!-- <router-link class="link donation" :title="$t('app.footer.donationDesc')" :to="{name: 'Donation'}">{{ $t('app.header.label.donation') }}</router-link> -->
+          <!-- <a v-if="showPlugin" class="link support" href="/vxe-table/plugins" target="_blank">💡插件</a> -->
         </div>
       </div>
     </header>
     <div class="page-container">
       <div class="aside" :class="{visible: showLeft}">
-        <div class="header">
+        <!-- <div class="header">
           <div class="version-list">
             <template v-if="stableVersionList.length">
               <span class="title">{{  $t('app.body.label.stableVersion')}}</span>
@@ -55,16 +54,16 @@
             </template>
           </div>
           <vxe-input clearable v-model="filterName" type="search" class="search-input" :placeholder="$t('app.body.search.searchPlaceholder')" @keyup="searchEvent" @clear="searchEvent"></vxe-input>
-        </div>
+        </div> -->
         <div class="body">
-          <div class="sponsors" v-if="sponsorList.length">
+          <!-- <div class="sponsors" v-if="sponsorList.length">
             <h4 class="title">赞助商</h4>
             <div v-for="(item, index) in sponsorList" :key="index">
               <a :href="item.url" :title="item.title" target="_blank">
                 <img :src="item.img" :style="{width: item.width, height: item.height}">
               </a>
             </div>
-          </div>
+          </div> -->
           <div class="docs">
             <template v-if="apiList.length">
               <!-- <ul class="nav-child-menu">

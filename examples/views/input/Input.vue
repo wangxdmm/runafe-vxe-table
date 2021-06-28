@@ -285,7 +285,7 @@ export default {
         `,
         `
         import XEUtils from 'xe-utils'
-        
+
         export default {
           data () {
             return {
@@ -496,7 +496,7 @@ export default {
   height: 34px;
   width: 300px;
 }
-.my-domain.vxe-input /deep/ .vxe-input--prefix {
+.my-domain.vxe-input ::v-deep .vxe-input--prefix {
   width: 60px;
   height: 32px;
   top: 1px;
@@ -504,7 +504,7 @@ export default {
   border-right: 1px solid #dcdfe6;
   background-color: #f5f7fa;
 }
-.my-domain.vxe-input /deep/ .vxe-input--inner {
+.my-domain.vxe-input ::v-deep .vxe-input--inner {
   padding-left: 72px;
   border: 1px solid #dcdfe6;
 }
@@ -512,7 +512,7 @@ export default {
   height: 34px;
   width: 300px;
 }
-.my-search.vxe-input /deep/ .vxe-input--suffix {
+.my-search.vxe-input ::v-deep .vxe-input--suffix {
   width: 60px;
   height: 32px;
   top: 1px;
@@ -521,7 +521,7 @@ export default {
   background-color: #f5f7fa;
   cursor: pointer;
 }
-.my-search.vxe-input /deep/ .vxe-input--inner {
+.my-search.vxe-input ::v-deep .vxe-input--inner {
   padding-right: 72px;
   border: 1px solid #dcdfe6;
 }

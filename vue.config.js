@@ -7,8 +7,8 @@ function resolve (dir) {
 process.env.VUE_APP_VXE_TABLE_ENV = !process || !process.env || !process.env.npm_lifecycle_event || process.env.npm_lifecycle_event.indexOf('lib:dev_pack') === 0 ? 'development' : process.env.NODE_ENV
 
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'production' ? '/vxe-table/v3' : '/',
-  outputDir: '../../../vxe-table/public/v3',
+  publicPath: process.env.NODE_ENV === 'production' ? '/table-ui/' : '/',
+  outputDir: './examples/table-ui',
   assetsDir: 'static',
   productionSourceMap: false,
   configureWebpack: {

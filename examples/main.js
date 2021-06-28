@@ -16,6 +16,7 @@ if (process.env.NODE_ENV === 'development') {
 // **************** （注意：该全局变量仅用于开发环境调试） ****************
 
 Vue.config.productionTip = false
+Vue.config.devtools = true
 
 new Vue({
   router,

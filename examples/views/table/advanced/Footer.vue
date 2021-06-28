@@ -466,11 +466,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.mytable-footer /deep/ .col-blue {
+.mytable-footer ::v-deep .col-blue {
   background-color: #2db7f5;
   color: #fff;
 }
-.mytable-footer /deep/ .col-red {
+.mytable-footer ::v-deep .col-red {
   background-color: red;
   color: #fff;
 }
