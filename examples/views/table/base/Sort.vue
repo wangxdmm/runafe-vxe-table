@@ -21,14 +21,15 @@
       highlight-hover-row
       ref="xTable"
       height="300"
+      :sort-config="{trigger: 'cell'}"
       :data="tableData">
       <vxe-table-column type="seq" width="60"></vxe-table-column>
-      <vxe-table-column field="name" title="Name" sortable></vxe-table-column>
-      <vxe-table-column field="role" title="Role" sortable></vxe-table-column>
+      <vxe-table-column field="name" title="Name" sortable :width="100"></vxe-table-column>
+      <!-- <vxe-table-column field="role" title="Role" sortable></vxe-table-column>
       <vxe-table-column field="age" title="Age" sortable></vxe-table-column>
       <vxe-table-column field="num" title="字符串" sort-type="string" sortable></vxe-table-column>
       <vxe-table-column field="num2" title="数值" sort-type="number" sortable></vxe-table-column>
-      <vxe-table-column field="address" title="Address" sortable></vxe-table-column>
+      <vxe-table-column field="address" title="Address" sortable></vxe-table-column> -->
     </vxe-table>
 
     <p class="demo-code">{{ $t('app.body.button.showCode') }}</p>

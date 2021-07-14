@@ -13,7 +13,8 @@ export default {
     tableGroupColumn: Array,
     fixedColumn: Array,
     size: String,
-    fixedType: String
+    fixedType: String,
+    fieldsSettingHandlers: Object
   },
   data () {
     return {
@@ -196,7 +197,7 @@ export default {
     },
     resizeMousedown (evnt, params) {
       const { column } = params
-      const { $parent: $xetable, $el, fixedType } = this
+      const { $parent: $xetable, $el, fixedType, fieldsSettingHandlers } = this
       const { tableBody, leftContainer, rightContainer, resizeBar: resizeBarElem } = $xetable.$refs
       const { target: dragBtnElem, clientX: dragClientX } = evnt
       const cell = params.cell = dragBtnElem.parentNode
@@ -269,6 +270,9 @@ export default {
           $xetable.saveCustomResizable()
           $xetable.updateCellAreas()
           $xetable.emitEvent('resizable-change', params, evnt)
+          if (fieldsSettingHandlers.resize) {
+            fieldsSettingHandlers.resize(params.column.property, { width: params.column.resizeWidth })
+          }
         })
         DomTools.removeClass($xetable.$el, 'drag--resize')
       }

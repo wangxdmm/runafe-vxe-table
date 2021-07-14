@@ -608,7 +608,7 @@ export const Cell = {
     const { showIcon, iconAsc, iconDesc } = $table.sortOpts
     return showIcon ? [
       h('span', {
-        class: 'vxe-cell--sort'
+        class: ['vxe-cell--sort'/* , { 'sort--none': !['asc', 'desc'].includes(column.order) } */]
       }, [
         h('i', {
           class: ['vxe-sort--asc-btn', iconAsc || GlobalConfig.icon.TABLE_SORT_ASC, {

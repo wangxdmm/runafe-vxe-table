@@ -1,8 +1,12 @@
 /**Variable**/
-@import './helpers/mixin.scss';
-@import './base/checked.scss';
-@import './base/common.scss';
-@import './base/loading.scss';
+@import "./helpers/mixin.scss";
+@import "./base/checked.scss";
+@import "./base/common.scss";
+@import "./base/loading.scss";
+
+%DefaultHeaderColumnHeight {
+  height: $vxe-table-header-row-height-default;
+}
 
 %DefaultColumnHeight {
   height: $vxe-table-row-height-default;
@@ -137,7 +141,8 @@
   }
   .vxe-table--cell-copy-area {
     &[half="1"] {
-      background-size: $vxe-table-cell-copy-area-border-width 12px, 0 12px, 12px $vxe-table-cell-copy-area-border-width, 12px $vxe-table-cell-copy-area-border-width;
+      background-size: $vxe-table-cell-copy-area-border-width 12px, 0 12px, 12px $vxe-table-cell-copy-area-border-width,
+        12px $vxe-table-cell-copy-area-border-width;
     }
   }
 }
@@ -152,7 +157,8 @@
   }
   .vxe-table--cell-copy-area {
     &[half="1"] {
-      background-size: 0 12px, $vxe-table-cell-copy-area-border-width 12px, 12px $vxe-table-cell-copy-area-border-width, 12px $vxe-table-cell-copy-area-border-width;
+      background-size: 0 12px, $vxe-table-cell-copy-area-border-width 12px, 12px $vxe-table-cell-copy-area-border-width,
+        12px $vxe-table-cell-copy-area-border-width;
     }
   }
 }
@@ -200,12 +206,13 @@
 
 .vxe-table--cell-copy-area {
   background: linear-gradient(0deg, transparent 6px, $vxe-table-cell-copy-area-border-color 6px) repeat-y,
-              linear-gradient(0deg, transparent 50%, $vxe-table-cell-copy-area-border-color 0) repeat-y,
-              linear-gradient(90deg, transparent 50%, $vxe-table-cell-copy-area-border-color 0) repeat-x,
-              linear-gradient(90deg, transparent 50%, $vxe-table-cell-copy-area-border-color 0) repeat-x;
-  background-size: $vxe-table-cell-copy-area-border-width 12px, $vxe-table-cell-copy-area-border-width 12px, 12px $vxe-table-cell-copy-area-border-width, 12px $vxe-table-cell-copy-area-border-width;
+    linear-gradient(0deg, transparent 50%, $vxe-table-cell-copy-area-border-color 0) repeat-y,
+    linear-gradient(90deg, transparent 50%, $vxe-table-cell-copy-area-border-color 0) repeat-x,
+    linear-gradient(90deg, transparent 50%, $vxe-table-cell-copy-area-border-color 0) repeat-x;
+  background-size: $vxe-table-cell-copy-area-border-width 12px, $vxe-table-cell-copy-area-border-width 12px,
+    12px $vxe-table-cell-copy-area-border-width, 12px $vxe-table-cell-copy-area-border-width;
   background-position: 0 0, 100% 0, 0 0, 0 100%;
-  animation: moveCopyCellBorder .5s infinite linear;
+  animation: moveCopyCellBorder 0.5s infinite linear;
 }
 
 .vxe-table--cell-active-area {
@@ -467,14 +474,12 @@
       user-select: none;
     }
   }
-  .vxe-header--column,
-  .vxe-body--column,
-  .vxe-footer--column {
+  @mixin columnTable($h) {
     position: relative;
     line-height: $vxe-table-row-line-height;
     text-align: left;
     &:not(.col--ellipsis) {
-      padding: #{floor(($vxe-table-row-height-default - $vxe-table-row-line-height) / 2)} 0;
+      padding: #{floor(($h - $vxe-table-row-line-height) / 2)} 0;
     }
     &.col--current {
       background-color: $vxe-table-column-current-background-color;
@@ -489,6 +494,14 @@
       text-align: right;
     }
   }
+  .vxe-body--column,
+  .vxe-footer--column {
+    @include columnTable($vxe-table-row-height-default);
+  }
+  .vxe-header--column {
+    @include columnTable($vxe-table-header-row-height-default);
+  }
+
   // &.is--tree-line {
   //   .vxe-header--column,
   //   .vxe-body--column,
@@ -504,12 +517,12 @@
   .vxe-footer--column {
     &.col--ellipsis {
       &.col--center {
-        .vxe-cell{
+        .vxe-cell {
           justify-content: center;
         }
       }
       &.col--right {
-        .vxe-cell{
+        .vxe-cell {
           justify-content: flex-end;
         }
       }
@@ -520,7 +533,7 @@
       user-select: none;
     }
   }
-  
+
   /*边框*/
   .vxe-table--footer-wrapper {
     border-top: $vxe-table-border-width solid $vxe-table-border-color;
@@ -547,14 +560,15 @@
     .vxe-header--column,
     .vxe-body--column,
     .vxe-footer--column {
-      background-image: linear-gradient($vxe-table-border-color, $vxe-table-border-color), linear-gradient($vxe-table-border-color, $vxe-table-border-color);
+      background-image: linear-gradient($vxe-table-border-color, $vxe-table-border-color),
+        linear-gradient($vxe-table-border-color, $vxe-table-border-color);
       background-repeat: no-repeat;
       background-size: $vxe-table-border-width 100%, 100% $vxe-table-border-width;
       background-position: right top, right bottom;
     }
     .vxe-table--fixed-left-wrapper {
       // border-right: $vxe-table-border-width solid $vxe-table-border-color;
-      .vxe-body--column{
+      .vxe-body--column {
         border-right-color: $vxe-table-border-color;
       }
     }
@@ -601,9 +615,12 @@
       border-top: 0;
     }
   }
-  
+
   &.size--medium {
     font-size: $vxe-font-size-medium;
+    .vxe-table--side-setting {
+      height: $vxe-table-header-row-height-medium - 2;
+    }
     .vxe-table--empty-placeholder,
     .vxe-table--empty-block {
       min-height: $vxe-table-row-height-medium;
@@ -630,6 +647,9 @@
   }
   &.size--small {
     font-size: $vxe-font-size-small;
+    .vxe-table--side-setting {
+      height: $vxe-table-header-row-height-small - 2;
+    }
     .vxe-table--empty-placeholder,
     .vxe-table--empty-block {
       min-height: $vxe-table-row-height-small;
@@ -656,6 +676,9 @@
   }
   &.size--mini {
     font-size: $vxe-font-size-mini;
+    .vxe-table--side-setting {
+      height: $vxe-table-header-row-height-mini - 2;
+    }
     .vxe-table--empty-placeholder,
     .vxe-table--empty-block {
       min-height: $vxe-table-row-height-mini;
@@ -742,7 +765,7 @@
           display: none;
         }
       }
-   }
+    }
   }
   .vxe-table--fixed-left-wrapper {
     left: 0;
@@ -894,7 +917,7 @@
         color: $vxe-table-font-color;
       }
     }
-    &+.vxe-table--expand-label {
+    & + .vxe-table--expand-label {
       padding-left: 0.5em;
     }
   }
@@ -937,11 +960,13 @@
   }
 
   /*溢出列*/
-  .vxe-header--column,
-  .vxe-body--column,
-  .vxe-footer--column {
+  @mixin mGenHeight($header: 2) {
     &.col--ellipsis {
-      @extend %DefaultColumnHeight;
+      @if $header == 1 {
+        @extend %DefaultHeaderColumnHeight;
+      } @else if $header == 2 {
+        @extend %DefaultColumnHeight;
+      }
       &:not(.col--actived) {
         & > .vxe-cell {
           @extend %TextEllipsis;
@@ -951,6 +976,13 @@
         max-height: $vxe-table-row-height-default;
       }
     }
+  }
+  .vxe-header--column {
+    @include mGenHeight(1);
+  }
+  .vxe-body--column,
+  .vxe-footer--column {
+    @include mGenHeight();
   }
   &.size--medium {
     .vxe-header--column,
@@ -1075,7 +1107,6 @@
           border-color: $vxe-table-validate-error-color;
         }
       }
-
     }
   }
   .vxe-body--row {

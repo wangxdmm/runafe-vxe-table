@@ -145,6 +145,7 @@ export default {
   mixins: [vSize],
   props: {
     ...Table.props,
+    fieldsSettingConfig: Object,
     columns: Array,
     pagerConfig: [Boolean, Object],
     proxyConfig: Object,
@@ -173,6 +174,11 @@ export default {
         total: 0,
         pageSize: 10,
         currentPage: 1
+      },
+      // 配置列设置字段
+      fieldsSettingParams: {
+        dialogValue: 1,
+        loading: false
       }
     }
   },
@@ -279,7 +285,7 @@ export default {
     GlobalEvent.off(this, 'keydown')
   },
   render (h) {
-    const { $scopedSlots, vSize, isZMax } = this
+    const { $scopedSlots, vSize, isZMax, fieldsSetting, fieldsSettingConfig } = this
     const hasForm = !!($scopedSlots.form || isEnableConf(this.formConfig))
     const hasToolbar = !!($scopedSlots.toolbar || isEnableConf(this.toolbarConfig) || this.toolbar)
     const hasPager = !!($scopedSlots.pager || isEnableConf(this.pagerConfig))
@@ -293,6 +299,20 @@ export default {
       }],
       style: this.renderStyle
     }, [
+      fieldsSetting ? h('rs-fields-setting', {
+        props: {
+          ...fieldsSettingConfig,
+          dialogValue: this.fieldsSettingParams.dialogValue,
+          fields: this.columns
+        },
+        on: {
+          'on-change': (data) => {
+            console.log(data)
+            this.reloadColumn(data)
+          }
+        },
+        ref: 'rsFieldsSettingRef'
+      }) : null,
       /**
        * 渲染表单
        */
@@ -330,7 +350,16 @@ export default {
        * 渲染表格
        */
       h('vxe-table', {
-        props: this.tableProps,
+        props: {
+          ...this.tableProps,
+          // rs-fields-setting 设置
+          fieldsSettingHandlers: {
+            show: this.showFieldsSetting,
+            close: this.closeFieldsSetting,
+            resize: this.resizeFieldsSetting
+          },
+          loading: this.loading || this.fieldsSettingParams.loading
+        },
         on: getTableOns(this),
         scopedSlots: $scopedSlots,
         ref: 'xTable'
@@ -364,6 +393,17 @@ export default {
   },
   methods: {
     ...methods,
+    showFieldsSetting () {
+      this.fieldsSettingParams.dialogValue++
+    },
+    closeFieldsSetting () {
+      this.fieldsSettingParams.dialogValue = -1
+    },
+    async resizeFieldsSetting (...args) {
+      this.fieldsSettingParams.loading = true
+      await this.$refs.rsFieldsSettingRef.update(...args)
+      this.fieldsSettingParams.loading = false
+    },
     callSlot (slotFunc, params, h, vNodes) {
       if (slotFunc) {
         const { $scopedSlots } = this

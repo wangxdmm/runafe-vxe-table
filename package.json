@@ -1,12 +1,12 @@
 {
-  "name": "vxe-table",
-  "version": "3.3.9",
-  "description": "一个基于 vue 的 PC 端表格组件，支持增删改查、虚拟滚动、懒加载、快捷菜单、数据校验、树形结构、打印导出、表单渲染、数据分页、虚拟列表、弹窗、自定义模板、渲染器、贼灵活的配置项、扩展接口等...",
+  "name": "@runafe/vxe-table",
+  "version": "1.0.0-beta.2",
+  "description": "runafe通用表格 基于vxe-table",
   "scripts": {
     "serve": "vue-cli-service serve",
     "lint": "vue-cli-service lint",
     "build": "vue-cli-service build",
-    "lib:modules": "gulp build",
+    "lib:modules": "cross-env VXE_V3=true gulp build",
     "lib:pack": "vue-cli-service build --target lib --name index --dest lib_temp index.js",
     "lib": "npm run lib:pack && npm run lib:modules",
     "format": "eslint --fix examples/**/*.{js,ts,vue}"
@@ -25,6 +25,8 @@
   "style": "lib/style.css",
   "typings": "types/index.d.ts",
   "devDependencies": {
+    "@runafe/runa-system": "^1.0.0-beta.6",
+    "@runafe/element-ui": "1.1.0-beta.12",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",
     "@vue/cli-plugin-babel": "~4.4.0",
@@ -38,9 +40,9 @@
     "ant-design-vue": "^1.7.5",
     "codemirror": "^5.53.2",
     "core-js": "^3.6.5",
+    "cross-env": "^7.0.3",
     "dayjs": "^1.10.4",
     "del": "^5.1.0",
-    "element-ui": "^2.15.2",
     "eslint": "^6.7.2",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-node": "^11.1.0",

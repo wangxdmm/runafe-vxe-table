@@ -10,6 +10,9 @@ module.exports = {
   publicPath: process.env.NODE_ENV === 'production' ? '/table-ui/' : '/',
   outputDir: './examples/table-ui',
   assetsDir: 'static',
+  devServer: {
+    host: '199.28.10.152'
+  },
   productionSourceMap: false,
   configureWebpack: {
     performance: {
@@ -31,7 +34,8 @@ module.exports = {
     },
     resolve: {
       alias: {
-        '@': resolve('examples')
+        '@': resolve('examples'),
+        'element-ui': '@runafe/element-ui'
       }
     },
     output: {

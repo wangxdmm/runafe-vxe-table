@@ -1,6 +1,6 @@
 /*font*/
 $vxe-font-family: -apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Helvetica Neue,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
-$vxe-font-color: #606266;
+$vxe-font-color: #333;
 $vxe-font-size: 14px;
 $vxe-font-size-medium: 14px;
 $vxe-font-size-small: 13px;
@@ -14,7 +14,7 @@ $vxe-icon-font-family: Verdana,Arial,Tahoma;
 $vxe-icon-background-color: #fff;
 
 /*color*/
-$vxe-primary-color: #409eff;
+$vxe-primary-color: #4194FC;
 $vxe-success-color: #67c23a;
 $vxe-info-color: #909399;
 $vxe-warning-color: #e6a23c;
@@ -33,34 +33,42 @@ $vxe-table-popup-border-color: #DADCE0;
 
 /*table*/
 $vxe-table-font-color: $vxe-font-color;
-$vxe-table-header-font-color: $vxe-font-color;
+$vxe-table-header-font-color: #333333;
 $vxe-table-footer-font-color: $vxe-font-color;
 $vxe-table-border-radius: $vxe-border-radius;
 $vxe-table-border-width: 1px;
-$vxe-table-border-color: #e8eaec;
+$vxe-table-border-color: #E0E0E0;
 $vxe-table-resizable-line-color: #D9DDDF;
 $vxe-table-resizable-drag-line-color: $vxe-primary-color;
-$vxe-table-header-background-color: #f8f8f9;
+$vxe-table-header-background-color: #F5F6F8;
 $vxe-table-body-background-color: #ffffff;
 $vxe-table-footer-background-color: #ffffff;
 $vxe-table-tree-node-line-color:#909399;
 $vxe-table-tree-node-line-style: dotted;
-$vxe-table-header-font-weight: 700;
+$vxe-table-header-font-weight: bolder;
 
-$vxe-table-row-height-default: 48px;
+$vxe-table-row-height-default: 36px;
 $vxe-table-row-height-medium: 44px;
 $vxe-table-row-height-small: 40px;
 $vxe-table-row-height-mini: 36px;
 $vxe-table-row-line-height: 24px;
-$vxe-table-row-hover-background-color: #f5f7fa;
-$vxe-table-row-striped-background-color: #fafafa;
-$vxe-table-row-hover-striped-background-color: #f5f7fa;
-$vxe-table-row-radio-checked-background-color: #fff3e0;
+
+// table header
+$vxe-table-header-row-height-default: 40px;
+$vxe-table-header-row-height-medium: 44px;
+$vxe-table-header-row-height-small: 40px;
+$vxe-table-header-row-height-mini: 36px;
+$vxe-table-header-row-line-height: 24px;
+
+$vxe-table-row-hover-background-color: #D9EAFE;
+$vxe-table-row-striped-background-color: #F5F6F8;
+$vxe-table-row-hover-striped-background-color: #D9EAFE;
+$vxe-table-row-radio-checked-background-color: #D9EAFE;
 $vxe-table-row-hover-radio-checked-background-color: #ffebbc;
 $vxe-table-row-checkbox-checked-background-color: #fff3e0;
 $vxe-table-row-hover-checkbox-checked-background-color: #ffebbc;
-$vxe-table-row-current-background-color: #e6f7ff;
-$vxe-table-row-hover-current-background-color: #d7effb;
+$vxe-table-row-current-background-color: #D9EAFE;
+$vxe-table-row-hover-current-background-color: #D9EAFE;
 
 $vxe-table-column-hover-background-color: #d7effb;
 $vxe-table-column-current-background-color: #e6f7ff;
@@ -104,7 +112,7 @@ $vxe-table-menu-item-width: 178px;
 $vxe-table-menu-background-color: #fff;
 
 /*loading*/
-$vxe-loading-background-color: rgba(0, 0, 0, 0.2);
+$vxe-loading-background-color: transparent;
 $vxe-loading-z-index: 999;
 
 /*validate*/
@@ -142,7 +150,7 @@ $vxe-modal-body-background-color: #fff;
 $vxe-modal-border-color: #ebeef5;
 
 /*checkbox*/
-$vxe-checkbox-font-size-default: 16px;
+$vxe-checkbox-font-size-default: 14px;
 $vxe-checkbox-font-size-medium: 15px;
 $vxe-checkbox-font-size-small: 14px;
 $vxe-checkbox-font-size-mini: 14px;
@@ -150,8 +158,8 @@ $vxe-checkbox-checked-width: 0.32em;
 $vxe-checkbox-checked-height: 0.64em;
 $vxe-checkbox-indeterminate-width: 0.6em;
 $vxe-checkbox-indeterminate-height: 2px;
-$vxe-checkbox-border-width: 2px;
-$vxe-checkbox-border-radius: 2px;
+$vxe-checkbox-border-width: 1px;
+$vxe-checkbox-border-radius: 1px;
 $vxe-checkbox-icon-background-color: #fff;
 $vxe-checkbox-checked-icon-border-color: #fff;
 $vxe-checkbox-indeterminate-icon-background-color: #fff;

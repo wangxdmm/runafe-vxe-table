@@ -236,7 +236,20 @@ export default {
     animat: { type: Boolean, default: () => GlobalConfig.table.animat },
     delayHover: { type: Number, default: () => GlobalConfig.table.delayHover },
     // 额外的参数
-    params: Object
+    params: Object,
+
+    // setting设置
+    // header右侧setting参数
+    fieldsSetting: {
+      type: Boolean,
+      default: true
+    },
+    // 点击事件处理函数
+    fieldsSettingHandlers: {
+      type: Object,
+      default: () => ({
+      })
+    }
   },
   components: {
     VxeTableBody
@@ -967,7 +980,9 @@ export default {
       ctxMenuStore,
       ctxMenuOpts,
       footerTableData,
-      hasTip
+      hasTip,
+      fieldsSetting,
+      fieldsSettingHandlers
     } = this
     const { leftList, rightList } = columnStore
     return h('div', {
@@ -998,6 +1013,20 @@ export default {
         keydown: this.keydownEvent
       }
     }, [
+      fieldsSetting ? h('div', {
+        class: 'vxe-table--side-setting',
+        on: {
+          click: () => {
+            try {
+              fieldsSettingHandlers.show()
+            } catch (error) {
+              console.error(error)
+            }
+          }
+        }
+      }, [h('i', {
+        class: 'el-icon-setting'
+      })]) : null,
       /**
        * 隐藏列
        */
@@ -1020,7 +1049,8 @@ export default {
               tableData,
               tableColumn,
               tableGroupColumn,
-              size: vSize
+              size: vSize,
+              fieldsSettingHandlers
             }
           }) : _e(),
           /**

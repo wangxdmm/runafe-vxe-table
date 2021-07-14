@@ -1525,7 +1525,7 @@ const Methods = {
   autoCellWidth (headerElem, bodyElem, footerElem) {
     let tableWidth = 0
     const minCellWidth = 40 // 列宽最少限制 40px
-    const bodyWidth = bodyElem.clientWidth - 1
+    const bodyWidth = bodyElem.clientWidth
     let remainWidth = bodyWidth
     let meanWidth = remainWidth / 100
     const { fit, columnStore } = this

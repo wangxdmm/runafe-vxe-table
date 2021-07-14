@@ -6,7 +6,6 @@
     </p>
 
     <vxe-table
-      border="inner"
       show-overflow
       :data="tableData">
       <vxe-table-column type="seq" width="60" fixed="left"></vxe-table-column>
@@ -27,7 +26,7 @@
     <p class="tip">如果列宽足够的情况下，固定列不会浮动</p>
 
     <vxe-table
-      border
+      border="inner"
       show-overflow
       :data="tableData">
       <vxe-table-column type="seq" width="60" fixed="left"></vxe-table-column>

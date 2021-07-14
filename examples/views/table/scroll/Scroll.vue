@@ -33,7 +33,6 @@
     </p>
 
     <vxe-table
-      border
       show-overflow
       show-header-overflow
       show-footer-overflow
@@ -200,7 +199,7 @@ export default {
         `,
         `
         import XEUtils from 'xe-utils'
-        
+
         export default {
           data () {
             return {}
