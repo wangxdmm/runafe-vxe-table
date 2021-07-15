@@ -15,7 +15,7 @@ import methods from './methods'
  * @param {String} fixedType 固定列类型
  */
 function renderFixed (h, $xetable, fixedType) {
-  const { _e, tableData, tableColumn, tableGroupColumn, vSize, showHeader, showFooter, columnStore, footerTableData } = $xetable
+  const { _e, tableData, tableColumn, tableGroupColumn, vSize, showHeader, showFooter, columnStore, footerTableData, fieldsSettingHandlers } = $xetable
   const fixedColumn = columnStore[`${fixedType}List`]
   return h('div', {
     class: `vxe-table--fixed-${fixedType}-wrapper`,
@@ -28,7 +28,8 @@ function renderFixed (h, $xetable, fixedType) {
         tableColumn,
         tableGroupColumn,
         size: vSize,
-        fixedColumn
+        fixedColumn,
+        fieldsSettingHandlers
       },
       ref: `${fixedType}Header`
     }) : _e(),

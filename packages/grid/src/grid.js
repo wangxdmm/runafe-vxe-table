@@ -399,10 +399,20 @@ export default {
     closeFieldsSetting () {
       this.fieldsSettingParams.dialogValue = -1
     },
-    async resizeFieldsSetting (...args) {
+    resizeFieldsSetting (...args) {
       this.fieldsSettingParams.loading = true
-      await this.$refs.rsFieldsSettingRef.update(...args)
-      this.fieldsSettingParams.loading = false
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      this.$refs.rsFieldsSettingRef.update(...args).then(re => {
+        this.fieldsSettingParams.loading = false
+        if (re && re.result) {
+          this.$message({
+            message: '修改宽度成功',
+            type: 'success'
+          })
+        }
+      }).catch((error) => {
+        console.error(error)
+      })
     },
     callSlot (slotFunc, params, h, vNodes) {
       if (slotFunc) {

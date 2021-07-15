@@ -1,14 +1,16 @@
 {
   "name": "@runafe/vxe-table",
-  "version": "1.0.0-beta.2",
+  "version": "1.0.0-beta.5",
   "description": "runafe通用表格 基于vxe-table",
   "scripts": {
     "serve": "vue-cli-service serve",
     "lint": "vue-cli-service lint",
     "build": "vue-cli-service build",
-    "lib:modules": "cross-env VXE_V3=true gulp build",
+    "lib:modules:v3": "cross-env VXE_V3=true gulp build",
+    "lib:modules": "gulp build",
     "lib:pack": "vue-cli-service build --target lib --name index --dest lib_temp index.js",
     "lib": "npm run lib:pack && npm run lib:modules",
+    "lib:v3": "npm run lib:pack && npm run lib:modules:v3",
     "format": "eslint --fix examples/**/*.{js,ts,vue}"
   },
   "files": [
