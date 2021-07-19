@@ -307,8 +307,7 @@ export default {
         },
         on: {
           'on-change': (data) => {
-            console.log(data)
-            this.reloadColumn(data)
+            this.loadColumn(data)
           }
         },
         ref: 'rsFieldsSettingRef'
@@ -353,11 +352,11 @@ export default {
         props: {
           ...this.tableProps,
           // rs-fields-setting 设置
-          fieldsSettingHandlers: {
+          fieldsSettingHandlers: fieldsSetting ? {
             show: this.showFieldsSetting,
             close: this.closeFieldsSetting,
             resize: this.resizeFieldsSetting
-          },
+          } : {},
           loading: this.loading || this.fieldsSettingParams.loading
         },
         on: getTableOns(this),

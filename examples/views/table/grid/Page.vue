@@ -46,10 +46,10 @@ export default {
       tableColumn: [
         { type: 'seq', width: 60 },
         { type: 'checkbox', width: 50 },
-        { field: 'name', title: 'Name' },
-        { field: 'nickname', title: 'Nickname' },
-        { field: 'role', title: 'Role' },
-        { field: 'address', title: 'Address', showOverflow: true }
+        { field: 'name', title: 'Name', width: 400 },
+        { field: 'nickname', title: 'Nickname', width: 200 },
+        { field: 'role', title: 'Role', width: 400 },
+        { field: 'address', title: 'Address', showOverflow: true, width: 400 }
       ],
       tableData: [],
       demoCodes: [
