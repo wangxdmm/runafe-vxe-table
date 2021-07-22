@@ -145,7 +145,6 @@ export default {
   mixins: [vSize],
   props: {
     ...Table.props,
-    fieldsSettingConfig: Object,
     columns: Array,
     pagerConfig: [Boolean, Object],
     proxyConfig: Object,
@@ -153,7 +152,17 @@ export default {
     toolbarConfig: [Boolean, Object],
     formConfig: [Boolean, Object],
     zoomConfig: Object,
-    size: { type: String, default: () => GlobalConfig.grid.size || GlobalConfig.size }
+    size: { type: String, default: () => GlobalConfig.grid.size || GlobalConfig.size },
+    // header右侧setting参数
+    fieldsSetting: {
+      type: Boolean,
+      default: true
+    },
+    fieldsSettingConfig: {
+      type: Object,
+      default: () => ({
+      })
+    }
   },
   provide () {
     return {
@@ -286,6 +295,7 @@ export default {
   },
   render (h) {
     const { $scopedSlots, vSize, isZMax, fieldsSetting, fieldsSettingConfig } = this
+    const isShowFieldSetting = fieldsSetting && fieldsSettingConfig.name
     const hasForm = !!($scopedSlots.form || isEnableConf(this.formConfig))
     const hasToolbar = !!($scopedSlots.toolbar || isEnableConf(this.toolbarConfig) || this.toolbar)
     const hasPager = !!($scopedSlots.pager || isEnableConf(this.pagerConfig))
@@ -299,13 +309,21 @@ export default {
       }],
       style: this.renderStyle
     }, [
-      fieldsSetting ? h('rs-fields-setting', {
+      isShowFieldSetting ? h('rs-fields-setting', {
         props: {
           ...fieldsSettingConfig,
           dialogValue: this.fieldsSettingParams.dialogValue,
           fields: this.columns
         },
         on: {
+          'before-fetch': () => {
+            this.fieldsSettingParams.loading = true
+          },
+
+          'after-fetch': () => {
+            this.fieldsSettingParams.loading = false
+          },
+
           'on-change': (data) => {
             this.loadColumn(data)
           }
@@ -350,14 +368,7 @@ export default {
        */
       h('vxe-table', {
         props: {
-          ...this.tableProps,
-          // rs-fields-setting 设置
-          fieldsSettingHandlers: fieldsSetting ? {
-            show: this.showFieldsSetting,
-            close: this.closeFieldsSetting,
-            resize: this.resizeFieldsSetting
-          } : {},
-          loading: this.loading || this.fieldsSettingParams.loading
+          ...this.tableProps
         },
         on: getTableOns(this),
         scopedSlots: $scopedSlots,
@@ -399,6 +410,7 @@ export default {
       this.fieldsSettingParams.dialogValue = -1
     },
     resizeFieldsSetting (...args) {
+      if (!this.fieldsSettingConfig.name) return
       this.fieldsSettingParams.loading = true
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       this.$refs.rsFieldsSettingRef.update(...args).then(re => {

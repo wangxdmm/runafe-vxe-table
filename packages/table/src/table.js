@@ -15,7 +15,7 @@ import methods from './methods'
  * @param {String} fixedType 固定列类型
  */
 function renderFixed (h, $xetable, fixedType) {
-  const { _e, tableData, tableColumn, tableGroupColumn, vSize, showHeader, showFooter, columnStore, footerTableData, fieldsSettingHandlers } = $xetable
+  const { _e, tableData, tableColumn, tableGroupColumn, vSize, showHeader, showFooter, columnStore, footerTableData } = $xetable
   const fixedColumn = columnStore[`${fixedType}List`]
   return h('div', {
     class: `vxe-table--fixed-${fixedType}-wrapper`,
@@ -28,8 +28,7 @@ function renderFixed (h, $xetable, fixedType) {
         tableColumn,
         tableGroupColumn,
         size: vSize,
-        fixedColumn,
-        fieldsSettingHandlers
+        fixedColumn
       },
       ref: `${fixedType}Header`
     }) : _e(),
@@ -237,20 +236,7 @@ export default {
     animat: { type: Boolean, default: () => GlobalConfig.table.animat },
     delayHover: { type: Number, default: () => GlobalConfig.table.delayHover },
     // 额外的参数
-    params: Object,
-
-    // setting设置
-    // header右侧setting参数
-    fieldsSetting: {
-      type: Boolean,
-      default: true
-    },
-    // 点击事件处理函数
-    fieldsSettingHandlers: {
-      type: Object,
-      default: () => ({
-      })
-    }
+    params: Object
   },
   components: {
     VxeTableBody
@@ -263,7 +249,7 @@ export default {
   },
   inject: {
     $xegrid: {
-      default: null
+      default: () => ({})
     }
   },
   data () {
@@ -981,10 +967,10 @@ export default {
       ctxMenuStore,
       ctxMenuOpts,
       footerTableData,
-      hasTip,
-      fieldsSetting,
-      fieldsSettingHandlers
+      hasTip
     } = this
+    const { fieldsSetting = false, fieldsSettingConfig = {}, showFieldsSetting } = this.$xegrid
+    const isShowFieldSetting = fieldsSetting && fieldsSettingConfig.name
     const { leftList, rightList } = columnStore
     return h('div', {
       class: ['vxe-table', 'vxe-table--render-default', `tid_${tId}`, vSize ? `size--${vSize}` : '', `border--${tableBorder}`, {
@@ -1014,12 +1000,13 @@ export default {
         keydown: this.keydownEvent
       }
     }, [
-      fieldsSetting ? h('div', {
+      isShowFieldSetting ? h('div', {
         class: 'vxe-table--side-setting',
+        ref: 'fSetting',
         on: {
           click: () => {
             try {
-              fieldsSettingHandlers.show()
+              showFieldsSetting()
             } catch (error) {
               console.error(error)
             }
@@ -1050,8 +1037,7 @@ export default {
               tableData,
               tableColumn,
               tableGroupColumn,
-              size: vSize,
-              fieldsSettingHandlers
+              size: vSize
             }
           }) : _e(),
           /**

@@ -1,5 +1,5 @@
 /**Variable**/
-@import './helpers/mixin.scss';
+@import "./helpers/mixin.scss";
 
 .vxe-table {
   .vxe-table--header-wrapper {
@@ -11,17 +11,30 @@
       height: 0;
       border-bottom: $vxe-table-border-width solid $vxe-table-border-color;
     }
+    .vxe-table--header-loading {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.4);
+      z-index: 100;
+      display: none;
+      &.is--show {
+        display: block;
+        cursor: not-allowed;
+      }
+    }
   }
   // 字段控制按钮
   .vxe-table--side-setting {
     position: absolute;
     right: 1px;
     top: 1px;
-    height: $vxe-table-header-row-height-default - 2;
+    // height: $vxe-table-header-row-height-default - 2;
     width: $vxe-table-header-row-height-default;
     // border-left: $vxe-table-border-width solid $vxe-table-border-color;
     cursor: pointer;
-    background-color: $vxe-table-header-background-color;
+    // background-color: $vxe-table-header-background-color;
     z-index: 98;
     @include flex(center, center);
     .el-icon-setting {

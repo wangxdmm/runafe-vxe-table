@@ -1728,7 +1728,16 @@ const Methods = {
           if (repairElem) {
             repairElem.style.width = `${tableWidth}px`
           }
-
+          // table Header 操作列之类的操作
+          const hLoadingElem = elemStore[`${name}-${layout}-hLoading`]
+          if (hLoadingElem) {
+            hLoadingElem.style.width = `${tableWidth}px`
+          }
+          // fields-setting
+          const fSetting = this.$refs.fSetting
+          if (fSetting) {
+            fSetting.style.height = `${headerHeight}px`
+          }
           const listElem = elemStore[`${name}-${layout}-list`]
           if (isGroup && listElem) {
             XEUtils.arrayEach(listElem.querySelectorAll('.col--group'), thElem => {

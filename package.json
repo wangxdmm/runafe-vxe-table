@@ -1,6 +1,6 @@
 {
   "name": "@runafe/vxe-table",
-  "version": "1.0.0-beta.8",
+  "version": "1.0.0-beta.9",
   "description": "runafe通用表格 基于vxe-table",
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -12,6 +12,9 @@
     "lib": "npm run lib:pack && npm run lib:modules",
     "lib:v3": "npm run lib:pack && npm run lib:modules:v3",
     "format": "eslint --fix examples/**/*.{js,ts,vue}"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "files": [
     "lib",

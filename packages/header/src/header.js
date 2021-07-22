@@ -13,8 +13,12 @@ export default {
     tableGroupColumn: Array,
     fixedColumn: Array,
     size: String,
-    fixedType: String,
-    fieldsSettingHandlers: Object
+    fixedType: String
+  },
+  inject: {
+    $xegrid: {
+      default: () => ({})
+    }
   },
   data () {
     return {
@@ -39,11 +43,13 @@ export default {
     elemStore[`${prefix}list`] = $refs.thead
     elemStore[`${prefix}xSpace`] = $refs.xSpace
     elemStore[`${prefix}repair`] = $refs.repair
+    elemStore[`${prefix}hLoading`] = $refs.hLoading
   },
   render (h) {
-    const { _e, $parent: $xetable, fixedType, headerColumn, fixedColumn } = this
+    const { _e, $parent: $xetable, fixedType, headerColumn, fixedColumn, $xegrid } = this
     const { $listeners: tableListeners, tId, isGroup, resizable, border, columnKey, headerRowClassName, headerCellClassName, headerRowStyle, headerCellStyle, showHeaderOverflow: allColumnHeaderOverflow, headerAlign: allHeaderAlign, align: allAlign, highlightCurrentColumn, currentColumn, scrollXLoad, overflowX, scrollbarWidth, sortOpts, mouseConfig } = $xetable
     let { tableColumn } = this
+    const { fieldsSettingParams = {} } = $xegrid
     let headerGroups = headerColumn
     // 如果是使用优化模式
     if (!isGroup) {
@@ -60,6 +66,10 @@ export default {
         xid: tId
       }
     }, [
+      h('div', {
+        class: ['vxe-table--header-loading', { 'is--show': fieldsSettingParams.loading }],
+        ref: 'hLoading'
+      }),
       fixedType ? _e() : h('div', {
         class: 'vxe-body--x-space',
         ref: 'xSpace'
@@ -197,7 +207,7 @@ export default {
     },
     resizeMousedown (evnt, params) {
       const { column } = params
-      const { $parent: $xetable, $el, fixedType, fieldsSettingHandlers } = this
+      const { $parent: $xetable, $el, fixedType, $xegrid } = this
       const { tableBody, leftContainer, rightContainer, resizeBar: resizeBarElem } = $xetable.$refs
       const { target: dragBtnElem, clientX: dragClientX } = evnt
       const cell = params.cell = dragBtnElem.parentNode
@@ -270,8 +280,10 @@ export default {
           $xetable.saveCustomResizable()
           $xetable.updateCellAreas()
           $xetable.emitEvent('resizable-change', params, evnt)
-          if (fieldsSettingHandlers.resize) {
-            fieldsSettingHandlers.resize(params.column.property, { width: params.column.resizeWidth })
+          try {
+            $xegrid.resizeFieldsSetting(params.column.property, { width: params.column.resizeWidth })
+          } catch (error) {
+            console.error(error)
           }
         })
         DomTools.removeClass($xetable.$el, 'drag--resize')

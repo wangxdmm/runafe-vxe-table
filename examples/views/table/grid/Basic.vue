@@ -4,7 +4,7 @@
       <grid-api-link name="vxe-grid"/> 高级表格：一个包含表单、工具栏、基础表格、分页...等全功能的组件<br>
     </p>
 
-    <vxe-grid v-bind="gridOptions">
+    <vxe-grid v-bind="gridOptions" :fieldsSettingConfig="{name: 'test'}">
       <template #toolbar_buttons>
         <vxe-button @click="gridOptions.align = 'left'">居左</vxe-button>
         <vxe-button @click="gridOptions.align = 'center'">居中</vxe-button>
@@ -38,9 +38,12 @@ export default {
         },
         columns: [
           { type: 'seq', width: 50 },
-          { field: 'name', title: 'app.body.label.name' },
-          { field: 'sex', title: 'app.body.label.sex', showHeaderOverflow: true },
-          { field: 'address', title: 'Address', showOverflow: true }
+          { field: 'name', title: 'app.body.label.name', width: 400 },
+          { field: 'sex', title: 'app.body.label.sex', showHeaderOverflow: true, width: 500 },
+          { field: 'address', title: 'Address', showOverflow: true, width: 200 },
+          { field: 'address1', title: 'Address1', showOverflow: true, fixed: 'right', width: 200 },
+          { field: 'address2', title: 'Address2', showOverflow: true, fixed: 'right', width: 200 },
+          { field: 'address3', title: 'Address3', showOverflow: true, width: 200 }
         ],
         data: [
           { id: 10001, name: 'Test1', nickname: 'T1', role: 'Develop', sex: 'Man', age: 0, address: 'Shenzhen' },

@@ -30,7 +30,7 @@ Vue.use(RsUI, {
         setTimeout(() => {
           vm.closeLoading()
           resolve({})
-        }, 4000)
+        }, 2000)
       })
     },
 
@@ -39,7 +39,7 @@ Vue.use(RsUI, {
       return new Promise(resolve => {
         setTimeout(() => {
           resolve(true)
-        }, 4000)
+        }, 2000)
       })
     }
   }
