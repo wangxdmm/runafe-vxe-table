@@ -1729,14 +1729,15 @@ const Methods = {
             repairElem.style.width = `${tableWidth}px`
           }
           // table Header 操作列之类的操作
-          const hLoadingElem = elemStore[`${name}-${layout}-hLoading`]
+          const hLoadingElem = this.$refs.hLoading
           if (hLoadingElem) {
-            hLoadingElem.style.width = `${tableWidth}px`
+            hLoadingElem.style.height = `${headerHeight}px`
           }
           // fields-setting
           const fSetting = this.$refs.fSetting
           if (fSetting) {
-            fSetting.style.height = `${headerHeight}px`
+            const fsHeight = headerHeight || 40
+            fSetting.style.height = `${fsHeight - 2}px`
           }
           const listElem = elemStore[`${name}-${layout}-list`]
           if (isGroup && listElem) {

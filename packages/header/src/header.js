@@ -43,13 +43,13 @@ export default {
     elemStore[`${prefix}list`] = $refs.thead
     elemStore[`${prefix}xSpace`] = $refs.xSpace
     elemStore[`${prefix}repair`] = $refs.repair
-    elemStore[`${prefix}hLoading`] = $refs.hLoading
+    // elemStore[`${prefix}hLoading`] = $refs.hLoading
   },
   render (h) {
-    const { _e, $parent: $xetable, fixedType, headerColumn, fixedColumn, $xegrid } = this
+    const { _e, $parent: $xetable, fixedType, headerColumn, fixedColumn } = this
     const { $listeners: tableListeners, tId, isGroup, resizable, border, columnKey, headerRowClassName, headerCellClassName, headerRowStyle, headerCellStyle, showHeaderOverflow: allColumnHeaderOverflow, headerAlign: allHeaderAlign, align: allAlign, highlightCurrentColumn, currentColumn, scrollXLoad, overflowX, scrollbarWidth, sortOpts, mouseConfig } = $xetable
     let { tableColumn } = this
-    const { fieldsSettingParams = {} } = $xegrid
+    // const { fieldsSettingParams = {} } = $xegrid
     let headerGroups = headerColumn
     // 如果是使用优化模式
     if (!isGroup) {
@@ -66,10 +66,6 @@ export default {
         xid: tId
       }
     }, [
-      h('div', {
-        class: ['vxe-table--header-loading', { 'is--show': fieldsSettingParams.loading }],
-        ref: 'hLoading'
-      }),
       fixedType ? _e() : h('div', {
         class: 'vxe-body--x-space',
         ref: 'xSpace'

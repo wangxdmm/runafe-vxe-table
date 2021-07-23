@@ -969,7 +969,7 @@ export default {
       footerTableData,
       hasTip
     } = this
-    const { fieldsSetting = false, fieldsSettingConfig = {}, showFieldsSetting } = this.$xegrid
+    const { fieldsSetting = false, fieldsSettingConfig = {}, showFieldsSetting, fieldsSettingParams = {} } = this.$xegrid
     const isShowFieldSetting = fieldsSetting && fieldsSettingConfig.name
     const { leftList, rightList } = columnStore
     return h('div', {
@@ -1015,6 +1015,10 @@ export default {
       }, [h('i', {
         class: 'el-icon-setting'
       })]) : null,
+      h('div', {
+        class: ['vxe-table--header-loading', { 'is--show': fieldsSettingParams.loading }],
+        ref: 'hLoading'
+      }),
       /**
        * 隐藏列
        */
