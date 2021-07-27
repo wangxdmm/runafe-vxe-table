@@ -19,9 +19,10 @@
     right: 0;
     z-index: 99;
     display: none;
-    background: rgba(255, 255, 255, .6);
+    // background: rgba(255, 255, 255, .6);
+    background: transparent;
     border: $vxe-table-border-width solid $vxe-table-border-color;
-    backdrop-filter: blur(3px);
+    // backdrop-filter: blur(3px);
     &.is--show {
       display: block;
       cursor: wait;

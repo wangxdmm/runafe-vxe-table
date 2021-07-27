@@ -1,6 +1,6 @@
 {
   "name": "@runafe/vxe-table",
-  "version": "1.0.0-beta.11",
+  "version": "1.0.0-beta.12",
   "description": "runafe通用表格 基于vxe-table",
   "scripts": {
     "serve": "vue-cli-service serve",
