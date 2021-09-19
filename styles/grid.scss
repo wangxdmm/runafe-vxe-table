@@ -29,6 +29,17 @@
     padding: 0.5em 1em;
     background-color: $vxe-grid-maximize-background-color;
   }
+  &.is--fsetting {
+    .vxe-table--render-default .vxe-header--row .vxe-header--column.col--last {
+      padding-right: 40px;
+    }
+    .vxe-table--render-default
+      .vxe-table--body
+      .vxe-body--column.col--last
+      > .vxe-cell {
+      padding-right: 40px;
+    }
+  }
   .vxe-body--row {
     &.row--pending {
       color: $vxe-table-validate-error-color;
@@ -51,7 +62,7 @@
   }
   .vxe-grid--form-wrapper,
   .vxe-grid--top-wrapper,
-  .vxe-grid--bottom-wrapper  {
+  .vxe-grid--bottom-wrapper {
     position: relative;
   }
 }

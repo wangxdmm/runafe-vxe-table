@@ -305,7 +305,8 @@ export default {
         'is--animat': !!this.animat,
         'is--round': this.round,
         'is--maximize': isZMax,
-        'is--loading': this.loading || this.tableLoading
+        'is--loading': this.loading || this.tableLoading,
+        'is--fsetting': isShowFieldSetting
       }],
       style: this.renderStyle
     }, [
